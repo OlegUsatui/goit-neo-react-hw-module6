@@ -1,10 +1,16 @@
 import styles from './SearchBox.module.css';
+import {useDispatch} from "react-redux";
+import {changeFilter} from "../../redux/filtersSlice.js";
 
-const SearchBox = ({ value, handleChange }) => {
+const SearchBox = ({ value }) => {
+  const dispatch = useDispatch();
+
+  const dispatchChangeFilter = (name) => dispatch(changeFilter(name));
 
   const onChange = (e) => {
-    handleChange(e.target.value)
+    dispatchChangeFilter(e.target.value)
   }
+
   return (
     <div className={styles.searchBox}>
     <label htmlFor="searchBox" className={styles.label}>Find contacts by name</label>
