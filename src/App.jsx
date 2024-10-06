@@ -22,19 +22,6 @@ function App() {
     localStorage.setItem('contacts', JSON.stringify(contacts));
   }, [contacts]);
 
-  const addContact = (contact) => {
-    const newContact = {
-      ...contact,
-      id: contacts.length,
-    };
-    const contactsArr = [...contacts, newContact];
-    setContacts(contactsArr);
-  };
-
-  const deleteContact = (id) => {
-    const newContacts = contacts.filter(contact => contact.id !== id);
-    setContacts([...newContacts]);
-  };
 
   const searchContacts = (val) => {
     setSearchQuery(val);
@@ -43,9 +30,9 @@ function App() {
   return (
     <div className={styles.container}>
       <h1>Phonebook</h1>
-      <ContactForm onSubmit={addContact} />
+      <ContactForm />
       <SearchBox value={searchQuery} handleChange={searchContacts} />
-      <ContactList list={filteredContacts} deleteContact={(id) => deleteContact(id)} />
+      <ContactList />
     </div>
   );
 }
